@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "mybatis-3-config.dtd">
+<configuration>    
+
+	<settings>
+		<!-- 打开延迟加载的开关 -->
+		<!-- <setting name="lazyLoadingEnabled" value="true" />
+		将积极加载改为消息加载即按需加载
+		<setting name="aggressiveLazyLoading" value="false" /> -->
+		<!-- 开启二级缓存，默认是false -->
+		<setting name="cacheEnabled" value="true"/>
+		<!-- 开启 sql调试 -->
+		<!--  <setting name="logImpl" value="STDOUT_LOGGING" /> -->
+	</settings>
+
+    <!-- 别名定义 -->
+    <typeAliases>
+         <!-- 批量别名定义: 自动扫描包中的po类，自动定义别名，别名就是类名 -->
+         <package name="com.july.po" />
+    </typeAliases>
+    
+</configuration>
