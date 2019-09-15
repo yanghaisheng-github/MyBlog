@@ -94,10 +94,10 @@
 			<version>2.7.0</version>
 		</dependency>
 		<dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.6</version>
-        </dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -125,6 +125,20 @@
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<!-- 直接访问 Tomcat 服务器的 manager -->
+					<url>http://localhost:8080/manager/text</url>
+					<server>tomcat9</server>
+					<username>admin</username>
+					<password>123123</password>
+					<update>true</update>
+					<path>/webapp</path>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
