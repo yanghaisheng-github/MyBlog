@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.july.mapper.BlogVoMapper">
+	<resultMap id="BaseResultMap" type="com.july.po.BlogCustom">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="introduction" jdbcType="VARCHAR"
+			property="introduction" />
+		<result column="keyword" jdbcType="VARCHAR" property="keyword" />
+		<result column="images" jdbcType="VARCHAR" property="images" />
+		<result column="clickNum" jdbcType="INTEGER"
+			property="clicknum" />
+		<result column="commentNum" jdbcType="INTEGER"
+			property="commentnum" />
+		<result column="agreeNum" jdbcType="INTEGER"
+			property="agreenum" />
+		<result column="isTop" jdbcType="INTEGER" property="istop" />
+		<result column="isRecommend" jdbcType="INTEGER"
+			property="isrecommend" />
+		<result column="updateTime" jdbcType="TIMESTAMP"
+			property="updatetime" />
+		<result column="addTime" jdbcType="TIMESTAMP"
+			property="addtime" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="type_id" jdbcType="INTEGER" property="typeId" />
+		<!-- 配置 多对一 关联关系 -->
+		<association column="type_id"
+			javaType="com.july.po.TBlogtype" property="type"
+			select="com.july.mapper.TBlogtypeMapper.selectBlogTypeById">
+		</association>
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.july.po.BlogCustom">
+		<result column="content" jdbcType="LONGVARCHAR"
+			property="content" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, title, introduction, keyword, images, clickNum,
+		commentNum, agreeNum,
+		isTop,
+		isRecommend, updateTime, addTime, status,
+		type_id
+	</sql>
+
+	<select id="selectBlogByAllType" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		from
+		t_blog AS a
+		where
+		(select
+		COUNT(*)
+		from
+		t_blog AS b
+		where
+	         <![CDATA[b.`status`=1 AND b.type_id = a.type_id AND b.clickNum >= a.clickNum) <= 6 AND `type_id` != 4 AND 
+	         `status` = 1]]>
+		ORDER BY a.type_id DESC,a.clickNum DESC
+	</select>
+</mapper>

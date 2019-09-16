@@ -1,17 +1,16 @@
-package com.july.services;
+package com.july.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import com.july.po.BlogCustom;
 
 
-public interface BlogService {
+public interface BlogVoMapper {
 
  	/**
      * 取得每个类别下的前N条记录
      * @param map
      * @return
      */
- 	Map<String, List<BlogCustom>> selectBlogByAllType();
+    List<BlogCustom> selectBlogByAllType();
 }

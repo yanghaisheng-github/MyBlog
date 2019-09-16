@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.july.po.TBlog;
+import com.july.po.BlogCustom;
 import com.july.services.BlogService;
 
 @Controller
@@ -28,7 +28,7 @@ public class BlogController {
     @RequestMapping(value = "/selectBlogByAllType")
     @ResponseBody
     public Map<String, Object> selectBlogByAllType() throws Exception{
-        Map<String,List<TBlog>> blogMap=blogService.selectBlogByAllType();
+        Map<String,List<BlogCustom>> blogMap=blogService.selectBlogByAllType();
         Map<String, Object> returnMap=new HashMap<String, Object>();
         if(blogMap.size()>0){
             returnMap.put("status", 200);
