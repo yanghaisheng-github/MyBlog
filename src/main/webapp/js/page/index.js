@@ -224,12 +224,12 @@ var initBlogByAllTypeBlog = function() {
         index++;
         newslist += "<ul class='newslist'>"
         for (var i = 0; i < data[type].length; i++) {
-          var id = data[type][i].id.toString(8) * data[type][i].id;
+          var id = data[type][i].blogCustom.id.toString(8) * data[type][i].blogCustom.id;
           if (i < 2) {
-            newspic += "<li><a href=find/" + id + ".html target='_blank'><img src=" + data[type][i].images + "> <span>" + data[type][i].title + "</span></a></li>";
+            newspic += "<li><a href=find/" + id + ".html target='_blank'><img src=" + data[type][i].blogCustom.images + "> <span>" + data[type][i].blogCustom.title + "</span></a></li>";
           }
           if (i >= 1) {
-            newslist += "<li><i></i><a href=find/" + id + ".html target='_blank'>" + data[type][i].title + "<p>" + data[type][i].introduction + "</p></a></li>";
+            newslist += "<li><i></i><a href=find/" + id + ".html target='_blank'>" + data[type][i].blogCustom.title + "<p>" + data[type][i].blogCustom.introduction + "</p></a></li>";
           }
         }
         newspic += "</ul></div>"

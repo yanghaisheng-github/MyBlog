@@ -25,13 +25,13 @@ public class BlogCustom extends TBlog {
     * 博客内容 * String content;   */
 
     /** 类别 */
-    private TBlogtype type;
+    private BlogTypeCustom type;
 
-	public TBlogtype getType() {
+	public BlogTypeCustom getType() {
 		return type;
 	}
 
-	public void setType(TBlogtype type) {
+	public void setType(BlogTypeCustom type) {
 		this.type = type;
 	}
 }

@@ -32,15 +32,15 @@ a {
     </div>
     <nav>
       <ul id="starlist">
-        <li><a href="${pageContext.request.contextPath}/homepage" title="首页" >网站首页</a></li>
-        <li><a href="${pageContext.request.contextPath}/list">技术笔记</a></li>
+        <li><a href="${pageContext.request.contextPath}/page/homepage.jsp" title="首页" >网站首页</a></li>
+        <li><a href="${pageContext.request.contextPath}/list">常用网站</a></li>
         <li class="menu"><a href="${pageContext.request.contextPath}/result?keyboard=type_1">技术专栏</a>
           <ul class="sub">
             <li></li>
           </ul> <span></span></li>
         <li><a href="${pageContext.request.contextPath}/resource">资源分享</a></li>
-        <li><a href="${pageContext.request.contextPath}/find/13015.html">网站介绍</a></li>
-        <li><a href="${pageContext.request.contextPath}/about">关于我</a></li>
+        <li><a href="${pageContext.request.contextPath}/find/13015.html">备忘录</a></li>
+        <li><a href="${pageContext.request.contextPath}/about">个性随笔</a></li>
         <li><a href="${pageContext.request.contextPath}/message">留言</a></li>
         <li><a href="${pageContext.request.contextPath}/admin/">登录</a></li>
       </ul>

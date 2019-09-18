@@ -2,7 +2,8 @@ package com.july.mapper;
 
 import java.util.List;
 
-import com.july.po.BlogCustom;
+import com.july.po.BlogTypeCustom;
+import com.july.po.BlogVo;
 
 
 public interface BlogVoMapper {
@@ -12,5 +13,12 @@ public interface BlogVoMapper {
      * @param map
      * @return
      */
-    List<BlogCustom> selectBlogByAllType();
+    List<BlogVo> selectBlogByAllType();
+    
+    /**
+     * 根据id获取类别
+     * @param id    类别，与TBlog中的typeId关联
+     * @return
+     */
+    BlogTypeCustom selectBlogTypeById(int id);
 }

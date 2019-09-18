@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.july.mapper.BlogVoMapper;
 import com.july.po.BlogCustom;
+import com.july.po.BlogVo;
 import com.july.services.BlogService;
 
 @Service
@@ -19,17 +20,17 @@ public class BlogServiceImpl implements BlogService {
 	private BlogVoMapper blogMapper;
 	
 	@Override
-	public Map<String, List<BlogCustom>> selectBlogByAllType() {
+	public Map<String, List<BlogVo>> selectBlogByAllType() {
 
-	    Map<String, List<BlogCustom>> map = new HashMap<>();
-	    List<BlogCustom> list = blogMapper.selectBlogByAllType();
-	    for (BlogCustom blog : list) {
-	      if (map.containsKey(blog.getType().getTypename())) {
-	        map.get(blog.getType().getTypename()).add(blog);
+	    Map<String, List<BlogVo>> map = new HashMap<>();
+	    List<BlogVo> list = blogMapper.selectBlogByAllType();
+	    for (BlogVo blogVo : list) {
+	      if (map.containsKey(blogVo.getBlogTypeCustom().getTypename())) {
+	        map.get(blogVo.getBlogTypeCustom().getTypename()).add(blogVo);
 	      } else {
-	        List<BlogCustom> bList = new ArrayList<>();
-	        bList.add(blog);
-	        map.put(blog.getType().getTypename(), bList);
+	        List<BlogVo> bList = new ArrayList<>();
+	        bList.add(blogVo);
+	        map.put(blogVo.getBlogTypeCustom().getTypename(), bList);
 	      }
 	    }
 	    return map;

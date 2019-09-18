@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.july.mapper.BlogVoMapper">
-	<resultMap id="BaseResultMap" type="com.july.po.BlogCustom">
-		<id column="id" jdbcType="INTEGER" property="id" />
-		<result column="title" jdbcType="VARCHAR" property="title" />
+	<resultMap id="BaseBlogResultMap" type="com.july.po.BlogVo">
+		<id column="id" jdbcType="INTEGER" property="blogCustom.id" />
+		<result column="title" jdbcType="VARCHAR"
+			property="blogCustom.title" />
 		<result column="introduction" jdbcType="VARCHAR"
-			property="introduction" />
-		<result column="keyword" jdbcType="VARCHAR" property="keyword" />
-		<result column="images" jdbcType="VARCHAR" property="images" />
+			property="blogCustom.introduction" />
+		<result column="keyword" jdbcType="VARCHAR"
+			property="blogCustom.keyword" />
+		<result column="images" jdbcType="VARCHAR"
+			property="blogCustom.images" />
 		<result column="clickNum" jdbcType="INTEGER"
-			property="clicknum" />
+			property="blogCustom.clicknum" />
 		<result column="commentNum" jdbcType="INTEGER"
-			property="commentnum" />
+			property="blogCustom.commentnum" />
 		<result column="agreeNum" jdbcType="INTEGER"
-			property="agreenum" />
-		<result column="isTop" jdbcType="INTEGER" property="istop" />
+			property="blogCustom.agreenum" />
+		<result column="isTop" jdbcType="INTEGER"
+			property="blogCustom.istop" />
 		<result column="isRecommend" jdbcType="INTEGER"
-			property="isrecommend" />
+			property="blogCustom.isrecommend" />
 		<result column="updateTime" jdbcType="TIMESTAMP"
-			property="updatetime" />
+			property="blogCustom.updatetime" />
 		<result column="addTime" jdbcType="TIMESTAMP"
-			property="addtime" />
-		<result column="status" jdbcType="INTEGER" property="status" />
-		<result column="type_id" jdbcType="INTEGER" property="typeId" />
+			property="blogCustom.addtime" />
+		<result column="status" jdbcType="INTEGER"
+			property="blogCustom.status" />
+		<result column="type_id" jdbcType="INTEGER"
+			property="blogCustom.typeId" />
 		<!-- 配置 多对一 关联关系 -->
 		<association column="type_id"
-			javaType="com.july.po.TBlogtype" property="type"
-			select="com.july.mapper.TBlogtypeMapper.selectBlogTypeById">
+			javaType="com.july.po.BlogTypeCustom" property="blogTypeCustom"
+			select="selectBlogTypeById">
 		</association>
 	</resultMap>
-	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
-		type="com.july.po.BlogCustom">
+	<resultMap extends="BaseBlogResultMap"
+		id="ResultMapWithBLOBs" type="com.july.po.BlogVo">
 		<result column="content" jdbcType="LONGVARCHAR"
-			property="content" />
+			property="blogCustom.content" />
 	</resultMap>
 
-	<sql id="Base_Column_List">
+	<resultMap id="BaseBlogTypeResultMap"
+		type="com.july.po.BlogTypeCustom">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="typeName" jdbcType="VARCHAR"
+			property="typename" />
+		<result column="num" jdbcType="INTEGER" property="num" />
+		<result column="addTime" jdbcType="TIMESTAMP"
+			property="addtime" />
+	</resultMap>
+
+	<sql id="Base_Blog_Column_List">
 		id, title, introduction, keyword, images, clickNum,
 		commentNum, agreeNum,
 		isTop,
@@ -43,9 +59,13 @@
 		type_id
 	</sql>
 
+	<sql id="Base_BlogType_Column_List">
+		id, typeName, num, addTime
+	</sql>
+
 	<select id="selectBlogByAllType" resultMap="ResultMapWithBLOBs">
 		select
-		<include refid="Base_Column_List" />
+		<include refid="Base_Blog_Column_List" />
 		from
 		t_blog AS a
 		where
@@ -58,4 +78,13 @@
 	         `status` = 1]]>
 		ORDER BY a.type_id DESC,a.clickNum DESC
 	</select>
+
+	<select id="selectBlogTypeById"
+		parameterType="java.lang.Integer" resultMap="BaseBlogTypeResultMap">
+		select
+		<include refid="Base_BlogType_Column_List" />
+		from t_blogtype as bt
+		where id=#{id}
+	</select>
+
 </mapper>

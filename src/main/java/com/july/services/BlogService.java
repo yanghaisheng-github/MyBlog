@@ -3,7 +3,7 @@ package com.july.services;
 import java.util.List;
 import java.util.Map;
 
-import com.july.po.BlogCustom;
+import com.july.po.BlogVo;
 
 
 public interface BlogService {
@@ -13,5 +13,5 @@ public interface BlogService {
      * @param map
      * @return
      */
- 	Map<String, List<BlogCustom>> selectBlogByAllType();
+ 	Map<String, List<BlogVo>> selectBlogByAllType();
 }
