@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.july.po.BlogCustom;
 import com.july.po.BlogVo;
 import com.july.services.BlogService;
 
@@ -24,12 +27,12 @@ public class HomePageController {
 	 /**
      * 模糊组合分页查询博客信息(and)
      * @param id
-     * @return  知识总结、网站开发、Java基础、设计模式、面试分享的内容
+     * @return  知识总结、网站开发、Java基础、设计模式、面试分享
      * @throws Exception
      */
-    @RequestMapping(value = "/selectBlogByAllType")
+    @RequestMapping(value = "/selectBlogByEachType")
     @ResponseBody
-    public Map<String, Object> selectBlogByAllType() throws Exception{
+    public Map<String, Object> selectBlogByEachType() throws Exception{
         Map<String,List<BlogVo>> blogMap=blogService.selectBlogByAllType();
         Map<String, Object> returnMap=new HashMap<String, Object>();
         if(blogMap.size()>0){
@@ -45,13 +48,12 @@ public class HomePageController {
 	 /**
 	  * 模糊组合分页查询博客信息(and)
 	  * @param id
-	  * @return   热门文章的内容
+	  * @return   热门文章、特别推荐、最新文章、点击排行
 	  * @throws Exception
 	  */
 	 @RequestMapping(value = "/selectGroupLikeBlogListByPage")
 	 @ResponseBody
-	 @AccessLimit(seconds=1,maxCount=15)
-	 public Map<String, Object> selectGroupLikeBlogListByPage(Blog blog,@RequestParam(value="sort", required=true,defaultValue="addTime") String sort,@RequestParam(value="page", required=true,defaultValue="1") Integer page,@RequestParam(value="pageSize", required=true,defaultValue="10") Integer pageSize) throws Exception{
+	 public Map<String, Object> selectGroupLikeBlogListByPage(BlogCustom blog,@RequestParam(value="sort", required=true,defaultValue="addTime") String sort,@RequestParam(value="page", required=true,defaultValue="1") Integer page,@RequestParam(value="pageSize", required=true,defaultValue="10") Integer pageSize) throws Exception{
 		 Map<String, Object> map=new HashMap<String, Object>();
 		 map.put("sort", sort);
 		 if(blog.getTitle()!=null&&blog.getTitle()!=""){
@@ -82,10 +84,10 @@ public class HomePageController {
 		 if(blog.getAddtime()!=null){
 			 map.put("addTime", blog.getAddtime());
 		 }
-		 //分页显示：第1页开始，每页显示10条记录
+		 //分页显示：第page页开始，每页显示pageSize条记录
 		 PageHelper.startPage(page, pageSize);
-		 List<Blog> blogList=blogService.selectGroupLikeBlogListByPage(map);
-		 PageInfo<Blog> pageInfo=new PageInfo<Blog>(blogList);
+		 List<BlogVo> blogList=blogService.selectGroupLikeBlogListByPage(map);
+		 PageInfo<BlogVo> pageInfo=new PageInfo<BlogVo>(blogList);
 		 Map<String, Object> returnMap=new HashMap<String, Object>();
 		 if(blogList.size()>0){
 			 returnMap.put("status", 200);

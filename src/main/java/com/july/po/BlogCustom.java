@@ -17,9 +17,9 @@ public class BlogCustom extends TBlog {
     * 1置顶，0普通 * Integer istop;
     * 博主推荐,1为推荐，0为普通 * Integer isrecommend;
     @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
-     Date updatetime;
+     Date updatetime;  更新时间
     @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
-     Date addtime;
+     Date addtime;   新建时间
     * -1为草稿，1为正文 ，2为回收站* Integer status;
     * typeId  与TBlogtype中的id关联
     * 博客内容 * String content;   */

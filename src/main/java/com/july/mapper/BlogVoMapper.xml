@@ -87,4 +87,37 @@
 		where id=#{id}
 	</select>
 
+
+    <select id="selectGroupLikeBlogListByPage" parameterType="java.util.Map"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Blog_Column_List" />
+		from t_blog
+		<where>
+			<if test="isTop!=null and isTop!=''">
+				and isTop=#{isTop}
+			</if>
+			<if test="type_id!=null and type_id!=''">
+				and type_id=#{type_id}
+			</if>
+			<if test="status!=null and status!=''">
+				and status=#{status}
+			</if>
+			<if test="isRecommend!=null and isRecommend!=''">
+				and isRecommend=#{isRecommend}
+			</if>
+			<if test="addTime!=null and addTime!=''">
+				and DATE_FORMAT(addTime,'%Y-%m-%d')=#{addTime}
+			</if>
+			<if test="title!=null and title!=''">
+				and ( title like CONCAT(CONCAT('%', #{title}), '%') or keyword like
+				CONCAT(CONCAT('%', #{keyword}), '%'))
+			</if>
+		</where>
+		<if test="sort!=null and sort!=''">
+			ORDER BY  #{sort}
+		</if>
+		DESC
+	</select>
+	
 </mapper>
