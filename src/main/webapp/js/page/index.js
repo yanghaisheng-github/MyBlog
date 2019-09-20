@@ -186,7 +186,7 @@ var initBlogByAllTypeBlog = function() {
 };
 
 
-//初始化推荐
+//初始化特别推荐
 var initBlogByLike = function() {
 	//设置参数
 	var params = {

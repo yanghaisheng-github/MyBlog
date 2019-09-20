@@ -38,9 +38,9 @@ a {
           <ul class="sub">
             <li></li>
           </ul> <span></span></li>
-        <li><a href="${pageContext.request.contextPath}/resource">资源分享</a></li>
-        <li><a href="${pageContext.request.contextPath}/find/13015.html">备忘录</a></li>
-        <li><a href="${pageContext.request.contextPath}/about">个性随笔</a></li>
+        <li><a href="${pageContext.request.contextPath}/resource">招聘信息</a></li>
+        <li><a href="${pageContext.request.contextPath}/find/13015.html">Vlog</a></li>
+        <li><a href="${pageContext.request.contextPath}/about">资源分享</a></li>
         <li><a href="${pageContext.request.contextPath}/message">留言</a></li>
         <li><a href="${pageContext.request.contextPath}/admin/">登录</a></li>
       </ul>

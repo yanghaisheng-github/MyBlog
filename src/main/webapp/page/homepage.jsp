@@ -32,6 +32,13 @@
 <body
 	style="background:url(<%=path%>/images/bj.png) repeat top left scroll;z-index:-2">
 	<%@ include file="top.jsp"%>
+		<!-- 加载jsp.properties配置文件 -->
+    <!-- basename为不带properties扩展名的文件名；var为存储该配置文件的变量名 -->
+    <fmt:setBundle basename="${pageContext.request.contextPath}/properties/jsp" var="jspproperties" />
+    <!-- 读取配置值key，并赋值给变量var -->
+    <!-- 直接输出配置值var示例：${homepageurl} -->
+    <fmt:message key="homepage.url" var="homepageurl" bundle="${jspproperties}" />
+    <fmt:message key="githuburl" var="githuburl" bundle="${jspproperties}" />
 	<article>
 	<div class="lbox ">
 		<div class="banbox">
@@ -112,23 +119,23 @@
 
 	<div class="rbox">
 		<div class="card">
-			<h2>名片</h2>
+			<h2>名片${homepageurl}</h2>
 			<p>网名：七月 | July</p>
 			<p>职业：男，软件测试工程师</p>
 			<p>现居：上海-浦东新区</p>
 			<p>Email：1098069103@qq.com</p>
 			<ul class="linkmore">
-				<li><a href="http://www.july.com" target="_blank"
+				<li><a href="${homepageurl} " target="_blank"
 					class="iconfont icon-zhuye" title="网站地址"></a></li>
 				<li><a
 					href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=-MTIxcrLz8jMyLyNjdKfk5E"
 					target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
 				<li><a
-					href="http://wpa.qq.com/msgrd?v=3&uin=849673404&site=qq&menu=yes"
+					href="http://wpa.qq.com/msgrd?v=3&uin=1098069103&site=qq&menu=yes"
 					target="_blank" class="iconfont icon---" title="QQ联系我"></a></li>
 				<li id="weixin"><a href="#" target="_blank"
 					class="iconfont icon-weixin" title="关注我的微信"></a><i><img
-						src="${pageContext.request.contextPath}/images/my_vx.png"></i></li>
+						src="${pageContext.request.contextPath}/images/my_wx.png"></i></li>
 			</ul>
 		</div>
 
@@ -149,8 +156,8 @@
 			style="display:none;animation-delay:0.3s">
 			<h2 class="htitle">开源地址</h2>
 			<ul class="animated fadeIn">
-				<li><a href="https://gitee.com/luotf/Art_Blog" target="_blank">Gitee&nbsp;&nbsp;</a></li>
-				<li><a href="https://github.com/luotf/Art_Blog" target="_blank">Github</a></li>
+				<li><a href="{github.url}" target="_blank">Gitee&nbsp;&nbsp;</a></li>
+				<li><a href="{github.url}" target="_blank">Github</a></li>
 			</ul>
 		</div>
 		<div class="weixin whitebg animated fadeIn"
